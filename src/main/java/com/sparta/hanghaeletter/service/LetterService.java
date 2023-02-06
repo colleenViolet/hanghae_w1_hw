@@ -45,7 +45,6 @@ public class LetterService {
         if(!letter.getPassword().equals(letterRequestDto.getPassword())){
             return "잘못된 비밀번호입니다.";
         }
-
         letter.update(letterRequestDto);
         return "수정완료";
     }
