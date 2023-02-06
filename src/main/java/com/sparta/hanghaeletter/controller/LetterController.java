@@ -29,4 +29,8 @@ public class LetterController {
             return letterService.getIdLetter(id);
        }
 
+       @PutMapping("api/update/{id}")
+        public String updatedLetter(@PathVariable Long id, @RequestBody LetterRequestDto letterRequestDto){
+            return letterService.updatedLetter(id, letterRequestDto);
+       }
 }

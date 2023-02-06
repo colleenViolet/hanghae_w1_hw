@@ -35,4 +35,10 @@ public class Letter extends Timestamped {
         this.content = letterRequestDto.getContent();
         this.password = letterRequestDto.getPassword();
     }
+
+    public void update(LetterRequestDto letterRequestDto) {
+        this.title = letterRequestDto.getTitle();
+        this.userName = letterRequestDto.getUserName();
+        this.content = letterRequestDto.getContent();
+    }
 }

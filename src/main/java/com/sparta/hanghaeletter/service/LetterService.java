@@ -38,4 +38,13 @@ public class LetterService {
                 ()-> new IllegalArgumentException("해당글이 없습니다."));
         return  new LetterResponseDto(letter);
     }
+
+    public String updatedLetter(Long id, LetterRequestDto letterRequestDto) {
+        Letter letter = letterRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("글이 없습니다."));
+        if(!letter.getPassword().equals(letterRequestDto.getPassword())){
+            return "잘못된 비밀번호입니다.";
+        }
+        letter.update(letterRequestDto);
+        return "수정완료";
+    }
 }
