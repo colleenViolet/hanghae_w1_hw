@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface LetterRepository extends JpaRepository<Letter, Long> {
     List<Letter> findAllByOrderByModifiedAtDesc();
+    List<Letter> findAllByOrderByCreatedAtDesc();
 }
