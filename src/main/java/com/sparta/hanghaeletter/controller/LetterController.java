@@ -33,4 +33,9 @@ public class LetterController {
         public String updatedLetter(@PathVariable Long id, @RequestBody LetterRequestDto letterRequestDto){
             return letterService.updatedLetter(id, letterRequestDto);
        }
+
+       @DeleteMapping("api/post/{id}")
+        public String deleteLetter(@PathVariable Long id, @RequestParam("password") String password){
+            return letterService.deleteLetter(id, password);
+       }
 }

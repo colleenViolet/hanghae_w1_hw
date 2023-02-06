@@ -39,12 +39,25 @@ public class LetterService {
         return  new LetterResponseDto(letter);
     }
 
+    @Transactional
     public String updatedLetter(Long id, LetterRequestDto letterRequestDto) {
         Letter letter = letterRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("글이 없습니다."));
         if(!letter.getPassword().equals(letterRequestDto.getPassword())){
             return "잘못된 비밀번호입니다.";
         }
+
         letter.update(letterRequestDto);
         return "수정완료";
+    }
+
+    public String deleteLetter(Long id, String password) {
+        Letter letter = letterRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("등록된 글이 없습니다.")
+        );
+        if(!letter.getPassword().equals(password)){
+            return "잘못된 비밀번호입니다.";
+        }
+        letterRepository.delete(letter);
+        return "삭제완료";
     }
 }
