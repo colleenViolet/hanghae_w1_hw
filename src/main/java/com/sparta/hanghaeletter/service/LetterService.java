@@ -24,12 +24,18 @@ public class LetterService {
         return letter;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<LetterResponseDto> getLetter() {
         List<Letter> letter = letterRepository.findAllByOrderByCreatedAtDesc();
         List<LetterResponseDto> letterResponseDtos = letter.stream()
                 .map(LetterResponseDto::new)
                 .collect(Collectors.toList());
         return letterResponseDtos;
+    }
+
+    public LetterResponseDto getIdLetter(Long id) {
+        Letter letter = letterRepository.findById(id).orElseThrow(
+                ()-> new IllegalArgumentException("해당글이 없습니다."));
+        return  new LetterResponseDto(letter);
     }
 }

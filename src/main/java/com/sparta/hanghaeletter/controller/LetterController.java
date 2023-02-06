@@ -5,10 +5,7 @@ import com.sparta.hanghaeletter.dto.LetterResponseDto;
 import com.sparta.hanghaeletter.entity.Letter;
 import com.sparta.hanghaeletter.service.LetterService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,9 @@ public class LetterController {
                 return letterService.getLetter();
        }
 
+       @GetMapping("api/get/{id}")
+        public LetterResponseDto getIdLetter(@PathVariable Long id){
+            return letterService.getIdLetter(id);
+       }
 
 }
